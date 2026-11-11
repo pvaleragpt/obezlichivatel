@@ -277,6 +277,8 @@ NUM_WORD = re.compile(r'(?:один|одна|два|две|три|четыр|п�
 MIN_DIGITS = {'КАРТА': 13, 'СЧЁТ': 10, 'СНИЛС': 11, 'ИНН': 10, 'ПАСПОРТ': 6, 'ПОЛИС': 9}
 UNIT_AFTER = re.compile(r'\s?(?:ms|мс|s\b|сек|с\b|мин|kb|mb|gb|кб|мб|гб|%|px|шт|rps|rpm|ед)', re.I)
 MONEY_NEAR = re.compile(r'руб|₽|\$|usd|eur|€|сумм|цен|стоим|оплат|бюджет|тыс|млн|млрд|зарплат|оклад|преми|amount|price|sum|cost|total', re.I)
+HTTP_NEAR = re.compile(r'ошибк|error|код\s*(?:ответа|ошибки)?|status|статус|http|сервер', re.I)
+SECRET_NEAR = re.compile(r'парол|password|pass|pin|пин|код\s*доступа|token|токен|secret', re.I)
 
 
 def trim(v, t):
@@ -314,6 +316,10 @@ def plausible(v, t, text):
     if digits < MIN_DIGITS.get(t, 0) or (t == 'ТЕЛЕФОН' and 0 < digits < 7):
         return False                                            # «504» — не карта, «2 of 5» — не телефон
     starts = [m.start() for m in re.finditer(re.escape(v), text)]
+    if re.fullmatch(r'[1-5]\d\d', v) and starts and all(HTTP_NEAR.search(text[max(0, i - 40):i]) for i in starts):
+        return False                                            # «ошибку 502», «HTTP 404» — код ответа сервера, не данные
+    if t == 'ТОКЕН' and re.fullmatch(r'\d{1,4}', v) and not any(SECRET_NEAR.search(text[max(0, i - 40):i]) for i in starts):
+        return False                                            # короткое число без слова «пароль»/«PIN» рядом — не пароль
     if re.fullmatch(r'[\d\s.,]+', v):
         if all(UNIT_AFTER.match(text[i + len(v):i + len(v) + 8]) for i in starts):
             return False                                        # 30000 ms, 40 %, 12 МБ

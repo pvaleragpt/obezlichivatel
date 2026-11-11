@@ -36,6 +36,7 @@ CLAUDE = {
     'launcher/make_launcher.sh': 'launcher/make_launcher.sh',
     'licenses/pdf.js — LICENSE.txt': 'vendor/pdfjs/LICENSE',
     'licenses/pdf.js — источник.txt': 'vendor/pdfjs/README.txt',
+    'licenses/Сторонние компоненты.md': 'THIRD_PARTY_NOTICES.md',
 }
 LOCAL = {
     'README.md': 'docs/README-local.md',
@@ -47,6 +48,7 @@ LOCAL = {
     'ocr-macos': 'mcp/ocr-macos',
     'licenses/pdf.js — LICENSE.txt': 'vendor/pdfjs/LICENSE',
     'licenses/pdf.js — источник.txt': 'vendor/pdfjs/README.txt',
+    'licenses/Сторонние компоненты.md': 'THIRD_PARTY_NOTICES.md',
 }
 EXECUTABLE = ('.sh', '.command', 'ocr-macos')
 

@@ -61,7 +61,7 @@ def main():
     homo = sorted(w for w, k in kinds.items() if 'common' in k and ({'surn', 'name'} & k) and kind(m.parse(w)[0].tag) == 'common')
     out = ROOT / 'src' / 'lexicon.js'
     out.write_text(
-        '/* Создан tools/build_lexicon.py из словаря OpenCorpora. Не править вручную. */\n'
+        '/* Создан tools/build_lexicon.py из словаря OpenCorpora (opencorpora.org, лицензия CC BY-SA 3.0). Этот список слов распространяется на тех же условиях. Не править вручную. */\n'
         'var Lexicon = {\n'
         '  commonStems: new Set(' + json.dumps('|'.join(pure), ensure_ascii=False) + '.split("|")),\n'
         '  commonForms: new Set(' + json.dumps('|'.join(homo), ensure_ascii=False) + '.split("|"))\n'
