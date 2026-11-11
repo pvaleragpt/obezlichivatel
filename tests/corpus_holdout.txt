@@ -1,0 +1,20 @@
+# Контрольный корпус: написан после правил, по нему правила не подгонялись.
+
+=== python.log
+2026-10-18 09:01:22,515 ERROR [celery.worker] Task sync_user failed for user {{ID:4815162342}} ({{ФИО:Ivanov Ivan}}, {{ПОЧТА:ivan.ivanov@gmail.com}})
+Traceback (most recent call last):
+  File "/opt/app/services/sync.py", line 88, in sync_user
+psycopg2.OperationalError: could not connect to server: Connection refused. Is the server running on host "{{ХОСТ:10.0.12.45}}" and accepting TCP/IP connections on port 5432?
+Oct 18 09:02:01 {{ХОСТ:edu-web-07}} sshd[2211]: Accepted publickey for {{НИК:deploy_bot}} from {{IP:192.168.10.77}} port 51544
+Oct 18 09:02:03 {{ХОСТ:edu-web-07}} kernel: eth0: link up, MAC {{ID:3c:22:fb:9a:11:07}}
+AWS_ACCESS_KEY_ID={{ТОКЕН:AKIAIOSFODNN7EXAMPLE}} AWS_SECRET_ACCESS_KEY={{ТОКЕН:wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY}}
+2026-10-18;09:05:11;{{НИК:smirnova_ea}};{{ФИО:Смирнова Елена}};экспорт журнала;OK
+[2026-10-18 09:06:00] payment.completed order={{ID:ORD-2026-000173}} total={{ДЕНЬГИ:4 990,00}} RUB card=**** {{КАРТА:4276}}
+GET {{МЕТОД:/rest/school/v3/teachers/search?snils=}}{{СНИЛС:11223344595}} 403
+
+=== СЛУЖЕБКА
+Прошу оплатить командировку {{ФИО:Петренко Андрея Николаевича}} в г. Казань с 20 по 24 октября. Суточные — {{ДЕНЬГИ:700 руб.}} в день, проживание — {{ДЕНЬГИ:USD 1,200.00}}, итого {{ДЕНЬГИ:€ 300}}.
+Контрагент: {{ОРГАНИЗАЦИЯ:ООО Ромашка-Софт}}, ИНН/КПП {{РЕКВИЗИТЫ:7701234567}}/{{РЕКВИЗИТЫ:770101001}}.
+Согласовано с {{ФИО:И.О. Фамильевым}} и {{ФИО:Ю. Бойко}}.
+Вопросы — {{ФИО:Оксане Дмитриевне}} по добавочному {{ТЕЛЕФОН:4512}}.
+Доступ к серверу выдан: {{НИК:p.nikolaev}}@{{ХОСТ:srv-files}}.
